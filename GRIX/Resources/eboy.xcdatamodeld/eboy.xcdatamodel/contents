@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="878" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Artboard" representedClassName="Artboard">
+        <attribute name="created" attributeType="Date" indexed="YES"/>
+        <relationship name="colorPalette" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ColorPalette" inverseName="artboards" inverseEntity="ColorPalette"/>
+        <relationship name="placedTiles" optional="YES" toMany="YES" maxCount="64" deletionRule="Cascade" ordered="YES" destinationEntity="PlacedTile" inverseName="artboard" inverseEntity="PlacedTile" syncable="YES"/>
+        <relationship name="tilePalettes" toMany="YES" minCount="1" maxCount="16" deletionRule="Cascade" ordered="YES" destinationEntity="ArtboardTilePalette" inverseName="artboard" inverseEntity="ArtboardTilePalette" syncable="YES"/>
+    </entity>
+    <entity name="ArtboardTile" representedClassName="ArtboardTile">
+        <attribute name="colorsIndex" attributeType="Transformable" syncable="YES"/>
+        <relationship name="placedTiles" optional="YES" toMany="YES" maxCount="64" deletionRule="Cascade" destinationEntity="PlacedTile" inverseName="tile" inverseEntity="PlacedTile" syncable="YES"/>
+        <relationship name="tilePalette" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ArtboardTilePalette" inverseName="artboardTiles" inverseEntity="ArtboardTilePalette" syncable="YES"/>
+    </entity>
+    <entity name="ArtboardTilePalette" representedClassName="ArtboardTilePalette" syncable="YES">
+        <relationship name="artboard" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artboard" inverseName="tilePalettes" inverseEntity="Artboard" syncable="YES"/>
+        <relationship name="artboardTiles" toMany="YES" minCount="1" maxCount="16" deletionRule="Cascade" ordered="YES" destinationEntity="ArtboardTile" inverseName="tilePalette" inverseEntity="ArtboardTile" syncable="YES"/>
+    </entity>
+    <entity name="ColorPalette" representedClassName="ColorPalette">
+        <attribute name="colorIndex" attributeType="Transformable"/>
+        <attribute name="eBoyID" attributeType="Integer 64" defaultValueString="0" indexed="YES"/>
+        <attribute name="eBoyName" attributeType="String" syncable="YES"/>
+        <relationship name="artboards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Artboard" inverseName="colorPalette" inverseEntity="Artboard" syncable="YES"/>
+    </entity>
+    <entity name="PlacedTile" representedClassName="PlacedTile" syncable="YES">
+        <attribute name="gridX" attributeType="Integer 16" maxValueString="7"/>
+        <attribute name="gridY" attributeType="Integer 16" maxValueString="7"/>
+        <attribute name="orientation" optional="YES" transient="YES"/>
+        <attribute name="orientationPersistentShadow" attributeType="Integer 16" maxValueString="3" defaultValueString="0" syncable="YES"/>
+        <relationship name="artboard" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artboard" inverseName="placedTiles" inverseEntity="Artboard" syncable="YES"/>
+        <relationship name="tile" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ArtboardTile" inverseName="placedTiles" inverseEntity="ArtboardTile" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Artboard" positionX="-639" positionY="-57" width="128" height="105"/>
+        <element name="ArtboardTile" positionX="-407" positionY="120" width="128" height="90"/>
+        <element name="ArtboardTilePalette" positionX="-425" positionY="15" width="128" height="75"/>
+        <element name="ColorPalette" positionX="-810" positionY="21" width="128" height="105"/>
+        <element name="PlacedTile" positionX="-396" positionY="270" width="128" height="135"/>
+    </elements>
+</model>

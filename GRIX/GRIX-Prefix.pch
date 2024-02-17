@@ -1,0 +1,29 @@
+//
+// Prefix header for all source files of the 'eboy' target in the 'eboy' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+#define UIAppDelegate ((eboyAppDelegate*)[UIApplication sharedApplication].delegate)
+
+// Timing Logging
+// To use this, the current scope must start with TimingLoggingStart, while the Mark and End are optional.
+
+//#define TimingLoggingStart NSTimeInterval timingStartTime = [NSDate timeIntervalSinceReferenceDate]; NSLog(@"== Start timing logging =="); NSTimeInterval timingMarkTime = timingStartTime;
+//#define TimingLoggingMark(name) NSLog(@"   %3.0fms %s", 1000.0 * ([NSDate timeIntervalSinceReferenceDate] - timingMarkTime), #name); timingMarkTime = [NSDate timeIntervalSinceReferenceDate]; 
+//#define TimingLoggingEnd NSLog(@"== %3.0fms total time ==", 1000.0 * ([NSDate timeIntervalSinceReferenceDate] - timingStartTime));
+
+// Stub defines for Timing
+#define TimingLoggingStart
+#define TimingLoggingMark(name)
+#define TimingLoggingEnd
